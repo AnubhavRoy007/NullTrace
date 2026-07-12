@@ -69,3 +69,9 @@ NullTrace requires the following high-privilege permissions in its manifest:
    * Open Chrome and navigate to `chrome://extensions/`.
    * Enable **Developer mode** (top-right).
    * Click **Load unpacked** (top-left) and select the `/dist` directory.
+
+
+
+
+
+# Do give a star and support us
