@@ -1,4 +1,4 @@
-# NullTrace 2.0
+# NullTrace
 
 NullTrace is a zero-knowledge, privacy-focused browser extension that keeps searches out of native browser history, encrypts a rolling history client-side, and routes network traffic through user-configured proxies.
 
