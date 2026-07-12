@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>NullTrace</title>
+  <link rel="stylesheet" href="styles/shared.css" />
+  <link rel="stylesheet" href="styles/popup.css" />
+</head>
+<body>
+  <main class="vault">
+    <section class="toggle-row">
+      <span class="toggle-label">Vault</span>
+      <button type="button" id="vault-toggle" class="toggle" aria-pressed="true">
+        <span class="toggle-track">
+          <span class="toggle-thumb"></span>
+        </span>
+        <span id="toggle-text" class="toggle-text">ON</span>
+      </button>
+    </section>
+
+    <header class="brand compact-brand">
+      <div class="logo">◇</div>
+      <h1>NullTrace</h1>
+    </header>
+
+    <div id="counter-row" class="counter-row">
+      <span class="counter-label">Searches Protected</span>
+      <span id="counter-val" class="counter-val">0</span>
+    </div>
+
+    <p id="stack-info" class="stack-info"></p>
+
+    <section id="off-panel" class="panel hidden">
+      <p class="off-msg">Vault is <strong>OFF</strong>. Chrome history is not stripped.</p>
+    </section>
+
+    <section id="unlock-panel" class="panel">
+      <div id="first-time-warning-box" class="warning-box hidden">
+        <div class="warning-title">⚠️ WARNING</div>
+        <p>If you lose this passphrase, you will lose access to all your encrypted history permanently. There is NO recovery option!</p>
+        <label class="checkbox-row" style="color: var(--text); font-size: 11px; margin-top: 6px; text-transform: none;">
+          <input type="checkbox" id="confirm-passphrase-loss" />
+          I understand history will be lost permanently if I lose this passphrase.
+        </label>
+      </div>
+      <button type="button" id="generate-passkey-btn" class="btn ghost">Generate passkey</button>
+      <div id="passkey-suggested-box" class="passkey-box hidden">
+        <code id="passkey-suggested"></code>
+        <button type="button" id="copy-suggested" class="btn ghost">Copy</button>
+      </div>
+      <input id="pass-input" type="password" placeholder="Enter passkey" autocomplete="off" />
+      <button id="unlock-btn" class="btn primary">Unlock</button>
+      <p id="status" class="status"></p>
+    </section>
+
+    <section id="unlocked-panel" class="panel hidden">
+      <p class="ok-msg">Unlocked. Open a new tab to search — encrypted history is on the homepage.</p>
+    </section>
+
+    <nav class="top-links compact">
+      <a href="#" id="open-options">Settings</a>
+    </nav>
+
+    <footer class="footer">
+      <span class="zk-badge">Encrypted history on new tab</span>
+    </footer>
+  </main>
+  <script type="module" src="popup.js"></script>
+</body>
+</html>

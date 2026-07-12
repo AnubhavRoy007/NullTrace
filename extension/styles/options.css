@@ -1,0 +1,226 @@
+.options-page {
+  max-width: 500px;
+}
+
+.settings-form fieldset {
+  border: none;
+  margin-bottom: 24px;
+}
+
+.settings-form select {
+  width: 100%;
+  background: rgba(15, 23, 42, 0.85);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  color: var(--text);
+  padding: 12px 14px;
+  font-size: 14px;
+  outline: none;
+  font-family: var(--font);
+  transition: all 0.2s;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.settings-form select:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 1px var(--accent), 0 0 12px rgba(45, 212, 191, 0.15);
+  background: var(--surface-solid);
+}
+
+.hint {
+  font-size: 11.5px;
+  color: var(--muted);
+  margin-top: 8px;
+  line-height: 1.5;
+}
+
+.checkbox-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  font-size: 14px;
+  cursor: pointer;
+  color: var(--text);
+  user-select: none;
+}
+
+.checkbox-row input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  accent-color: var(--accent);
+  margin-top: 3px;
+  cursor: pointer;
+}
+
+.privacy-block h3,
+.proxy-block h3 {
+  font-family: var(--font-display);
+  font-size: 13.5px;
+  font-weight: 600;
+  margin-bottom: 14px;
+  color: var(--text);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.proxy-list {
+  list-style: none;
+  margin: 14px 0;
+  padding: 0;
+}
+
+.proxy-list li {
+  margin-bottom: 10px;
+  padding: 12px 16px;
+  background: rgba(30, 41, 59, 0.35);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  transition: all 0.2s;
+}
+
+.proxy-list li:hover {
+  background: rgba(30, 41, 59, 0.55);
+  border-color: rgba(45, 212, 191, 0.3);
+}
+
+.proxy-option {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  cursor: pointer;
+  font-size: 13.5px;
+}
+
+.proxy-option input {
+  margin-right: 10px;
+  accent-color: var(--accent);
+}
+
+.proxy-meta {
+  font-size: 11px;
+  color: var(--muted);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  margin-left: 24px;
+}
+
+.settings-form textarea {
+  width: 100%;
+  background: rgba(15, 23, 42, 0.85);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  color: var(--text);
+  padding: 12px;
+  font-size: 12.5px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  resize: vertical;
+  margin-top: 8px;
+  outline: none;
+  transition: all 0.2s;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.settings-form textarea:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 1px var(--accent), 0 0 12px rgba(45, 212, 191, 0.15);
+  background: var(--surface-solid);
+}
+
+.readonly-info p {
+  font-size: 13.5px;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+.actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.actions .btn.primary {
+  flex: 1;
+  margin-top: 0;
+  min-width: 150px;
+}
+
+.actions .btn.ghost {
+  margin-top: 0;
+}
+
+.danger-zone,
+.links-section {
+  margin-top: 32px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+}
+
+.danger-zone h2,
+.links-section h2 {
+  font-family: var(--font-display);
+  font-size: 12.5px;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 16px;
+  font-weight: 600;
+}
+
+.danger-zone .btn {
+  display: block;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.btn.danger {
+  color: var(--danger);
+  border-color: rgba(248, 113, 113, 0.25);
+  background: rgba(248, 113, 113, 0.05);
+}
+
+.btn.danger:hover:not(:disabled) {
+  background: rgba(248, 113, 113, 0.15);
+  border-color: var(--danger);
+  box-shadow: 0 4px 14px rgba(248, 113, 113, 0.15);
+}
+
+.links-section a {
+  color: var(--accent);
+  font-size: 13.5px;
+  text-decoration: none;
+  transition: all 0.2s;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.links-section a:hover {
+  color: #0ea5e9;
+  text-decoration: none;
+}
+
+.row-grid {
+  display: flex;
+  gap: 16px;
+  margin-top: 12px;
+}
+
+.row-grid .sub-fieldset {
+  flex: 1;
+  margin-bottom: 0;
+}
+
+.sub-fieldset {
+  margin-bottom: 16px;
+}
+
+.sub-fieldset label {
+  font-size: 11px;
+  color: var(--muted);
+  text-transform: uppercase;
+  margin-bottom: 6px;
+  letter-spacing: 0.06em;
+}
+
+.hidden {
+  display: none !important;
+}

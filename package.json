@@ -1,0 +1,10 @@
+{
+  "name": "nulltrace",
+  "version": "2.0.0",
+  "description": "NullTrace - Private Vault Extension",
+  "scripts": {
+    "build": "node build.js",
+    "test": "node server/test-crypto-vault.mjs"
+  },
+  "type": "module"
+}

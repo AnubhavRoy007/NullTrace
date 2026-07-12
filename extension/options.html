@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NullTrace Settings</title>
+  <link rel="stylesheet" href="styles/shared.css" />
+  <link rel="stylesheet" href="styles/options.css" />
+</head>
+<body>
+  <main class="vault options-page">
+    <header class="brand">
+      <div class="logo">◇</div>
+      <h1>Settings</h1>
+      <p class="tagline">Normal tabs · 15m cache wipe · country proxy</p>
+    </header>
+
+    <form id="settings-form" class="settings-form">
+      <fieldset>
+        <label for="server-host">Local server address</label>
+        <input id="server-host" type="text" placeholder="127.0.0.1:3847" spellcheck="false" />
+        <p class="hint">Run start-server.bat first. Default port: 3847</p>
+      </fieldset>
+
+      <fieldset>
+        <label for="search-engine">Search engine</label>
+        <select id="search-engine">
+          <option value="duckduckgo">DuckDuckGo (no region bias)</option>
+          <option value="google">Google</option>
+          <option value="bing">Bing</option>
+        </select>
+      </fieldset>
+
+      <fieldset>
+        <label for="proxy-country">Search region (hides home location)</label>
+        <select id="proxy-country"></select>
+        <p class="hint">Uses search URL region flags — works without a proxy. Direct connection is default.</p>
+      </fieldset>
+
+      <fieldset class="proxy-block">
+        <h3>Custom Proxy Settings</h3>
+        <label class="checkbox-row">
+          <input id="use-custom-proxy" type="checkbox" />
+          Route <strong>all</strong> browser traffic through a custom proxy (requires valid proxy)
+        </label>
+        
+        <div id="proxy-config-fields" class="hidden">
+          <div class="sub-fieldset" style="margin-top: 14px;">
+            <label for="proxy-paste">Quick Paste Config String</label>
+            <input id="proxy-paste" type="text" placeholder="e.g. socks5://user:pass@host:port OR host:port" spellcheck="false" autocomplete="off" />
+            <p class="hint">Paste a proxy URI or host:port to auto-fill the fields below.</p>
+          </div>
+
+          <div class="row-grid">
+            <div class="sub-fieldset">
+              <label for="proxy-scheme">Proxy Scheme</label>
+              <select id="proxy-scheme">
+                <option value="http">HTTP</option>
+                <option value="https">HTTPS</option>
+                <option value="socks4">SOCKS4</option>
+                <option value="socks5">SOCKS5</option>
+              </select>
+            </div>
+
+            <div class="sub-fieldset" style="flex: 2;">
+              <label for="proxy-host">Host / IP</label>
+              <input id="proxy-host" type="text" placeholder="1.2.3.4" spellcheck="false" autocomplete="off" />
+            </div>
+
+            <div class="sub-fieldset">
+              <label for="proxy-port">Port</label>
+              <input id="proxy-port" type="number" placeholder="8080" min="1" max="65535" />
+            </div>
+          </div>
+
+          <div class="row-grid">
+            <div class="sub-fieldset">
+              <label for="proxy-user">Username (Optional)</label>
+              <input id="proxy-user" type="text" placeholder="username" spellcheck="false" autocomplete="off" />
+            </div>
+
+            <div class="sub-fieldset">
+              <label for="proxy-pass">Password (Optional)</label>
+              <input id="proxy-pass" type="password" placeholder="password" autocomplete="off" />
+            </div>
+          </div>
+        </div>
+      </fieldset>
+
+      <fieldset class="search-engines-block">
+        <h3>Custom Search Engines</h3>
+        <div id="search-engines-list" class="proxy-list" style="margin-bottom: 12px;"></div>
+        
+        <div class="row-grid" style="align-items: flex-end; margin-top: 0;">
+          <div class="sub-fieldset" style="margin-bottom: 0;">
+            <label for="new-engine-name">Name</label>
+            <input id="new-engine-name" type="text" placeholder="Yahoo" autocomplete="off" />
+          </div>
+          <div class="sub-fieldset" style="flex: 2; margin-bottom: 0;">
+            <label for="new-engine-url">Query URL</label>
+            <input id="new-engine-url" type="text" placeholder="https://search.yahoo.com/search?p=" autocomplete="off" />
+          </div>
+          <button type="button" id="add-engine-btn" class="btn ghost" style="margin-top: 0; padding: 12px 14px;">Add</button>
+        </div>
+        <p class="hint">Specify the search query URL ending with the parameter (e.g. <code>https://duckduckgo.com/?q=</code>).</p>
+      </fieldset>
+
+      <fieldset class="auto-vault-block">
+        <h3>Auto-Vault Rules</h3>
+        <div class="sub-fieldset">
+          <label for="auto-vault-domains">Auto-Vault Domains</label>
+          <textarea id="auto-vault-domains" rows="3" placeholder="example.com&#10;anotherdomain.org" spellcheck="false" autocomplete="off" style="width: 100%; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); color: var(--text); padding: 10px 12px; font-size: 13px; resize: vertical;"></textarea>
+          <p class="hint">Type domains (one per line). Navigating to these domains automatically upgrades the tab to a private vault tab.</p>
+        </div>
+      </fieldset>
+
+      <fieldset class="privacy-block">
+        <h3>Incognito-like Privacy</h3>
+        <label class="checkbox-row">
+          <input id="incognito-shield" type="checkbox" checked />
+          Clear logins &amp; site data when you close a vault tab
+        </label>
+        <label class="checkbox-row">
+          <input id="strip-history" type="checkbox" checked />
+          Purge Chrome search history — wipe cache, cookies &amp; history when a vault tab closes
+        </label>
+        <label class="checkbox-row">
+          <input id="save-local-history" type="checkbox" checked />
+          Encrypted search history on NullTrace homepage
+        </label>
+        
+        <div class="sub-fieldset" style="margin-top: 14px;">
+          <label for="history-retention">History Retention Limit</label>
+          <select id="history-retention" style="width: 100%; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); color: var(--text); padding: 12px 14px; font-size: 14px;">
+            <option value="5">Last 5 searches</option>
+            <option value="10">Last 10 searches</option>
+            <option value="25">Last 25 searches</option>
+            <option value="unlimited">Unlimited history</option>
+          </select>
+        </div>
+        <p class="hint">When enabled, closing a vault search tab clears that site’s cache, cookies, and history (like Chrome’s Delete browsing data) so it won’t appear in Recent tabs. Homepage cache still sweeps every 15 minutes.</p>
+      </fieldset>
+
+      <div class="actions">
+        <button type="submit" class="btn primary">Save settings</button>
+        <button type="button" id="test-server" class="btn ghost">Test server</button>
+      </div>
+
+      <section class="backup-section" style="margin-top: 28px; padding-top: 20px; border-top: 1px solid var(--border);">
+        <h2>Backup &amp; Restore</h2>
+        <p class="hint">Export your encrypted history and settings, or import an existing backup. The backup file is client-side encrypted.</p>
+        <div class="actions" style="margin-top: 12px;">
+          <button type="button" id="export-backup-btn" class="btn ghost">Export Encrypted Backup</button>
+          <button type="button" id="import-backup-btn" class="btn ghost">Import Backup</button>
+        </div>
+        <input type="file" id="import-file-input" class="hidden" accept=".json" />
+      </section>
+      <p id="status" class="status"></p>
+    </form>
+
+    <section class="danger-zone">
+      <h2>Vault actions</h2>
+      <button type="button" id="lock-btn" class="btn ghost">Lock vault (clear session)</button>
+      <button type="button" id="clear-history-btn" class="btn ghost danger">Clear homepage history</button>
+      <button type="button" id="clear-visited-btn" class="btn ghost danger">Clear visited tabs list</button>
+      <button type="button" id="purge-chrome-history-btn" class="btn ghost danger">Purge Chrome search data now (history, cache, cookies)</button>
+    </section>
+
+    <section class="links-section">
+      <h2>Demo</h2>
+      <a id="pitch-link" href="#" target="_blank" rel="noopener">Open judge pitch deck →</a>
+    </section>
+
+    <footer class="footer">
+      <span id="browser-label"></span>
+    </footer>
+  </main>
+  <script type="module" src="options.js"></script>
+</body>
+</html>

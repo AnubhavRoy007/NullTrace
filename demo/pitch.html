@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NullTrace — Description</title>
+  <link rel="stylesheet" href="/demo/pitch.css" />
+</head>
+<body>
+  <div class="deck">
+    <section class="slide active" data-i="0">
+      <div class="logo">◇</div>
+      <h1>NullTrace</h1>
+      <h2>Private search. Zero browser history.</h2>
+      <p>Your searches never touch Chrome or Firefox history — only encrypted blobs on your machine.</p>
+    </section>
+
+    <section class="slide" data-i="1">
+      <h1>The problem</h1>
+      <ul>
+        <li>Incognito does not hide searches from the browser or OS</li>
+        <li>History APIs and sync expose what you looked for</li>
+        <li>Users deserve readable history — but only for themselves</li>
+      </ul>
+    </section>
+
+    <section class="slide" data-i="2">
+      <h1>Our solution</h1>
+      <ul>
+        <li>Custom new tab — search never hits browser history API</li>
+        <li>21 encryption layers — 7 chosen at random per browser session</li>
+        <li>Last 5 searches only — auto-pruned encrypted storage</li>
+        <li>Passphrase unlock — plaintext never persisted</li>
+      </ul>
+    </section>
+
+    <section class="slide" data-i="3">
+      <h1>7 of 21 layers (per session)</h1>
+      <div class="layers">
+        <div class="layer"><span class="layer-num">1</span><span>AES-256-GCM (PBKDF2-derived key)</span></div>
+        <div class="layer"><span class="layer-num">2</span><span>XOR stream obfuscation</span></div>
+        <div class="layer"><span class="layer-num">3</span><span>AES-256-GCM (second key)</span></div>
+        <div class="layer"><span class="layer-num">4</span><span>Byte reversal</span></div>
+        <div class="layer"><span class="layer-num">5</span><span>Shuffled Base64 alphabet</span></div>
+        <div class="layer"><span class="layer-num">6</span><span>ROT-7 cipher</span></div>
+        <div class="layer"><span class="layer-num">7</span><span>Final AES-256-GCM seal</span></div>
+      </div>
+    </section>
+
+    <section class="slide" data-i="4">
+      <h1>Data flow</h1>
+      <pre class="flow">User types query (new tab)
+    ↓
+Browser encrypts (7 random of 21)
+    ↓
+Ciphertext → extension storage (max 5)
+    ↓
+Redirect token → search engine
+    ↓
+Browser history API: never called</pre>
+    </section>
+
+    <section class="slide" data-i="5">
+      <h1>Live demo</h1>
+      <p>Open a new tab, unlock vault, search, then check popup for last 5 decrypted entries.</p>
+    </section>
+
+    <section class="slide" data-i="6">
+      <h1>Thank you</h1>
+      <h2>NullTrace — your searches, your machine, your keys.</h2>
+      <p>Questions?</p>
+    </section>
+  </div>
+
+  <nav class="nav">
+    <button type="button" id="prev">← Prev</button>
+    <div class="dots" id="dots"></div>
+    <button type="button" id="next">Next →</button>
+  </nav>
+
+  <script src="/demo/pitch.js"></script>
+</body>
+</html>

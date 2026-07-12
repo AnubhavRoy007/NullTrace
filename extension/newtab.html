@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NullTrace</title>
+  <link rel="stylesheet" href="styles/shared.css" />
+  <link rel="stylesheet" href="styles/newtab.css" />
+</head>
+<body>
+  <main class="vault">
+    <header class="brand">
+      <div class="logo">◇</div>
+      <h1>NullTrace</h1>
+      <p class="tagline">Normal tabs · cache cleared every 15 min · history only here</p>
+    </header>
+
+    <section id="off-panel" class="panel hidden">
+      <p class="off-msg">Vault is <strong>OFF</strong>. Turn it on from the extension icon to encrypt searches.</p>
+    </section>
+
+    <p id="stack-info" class="stack-info"></p>
+    <p id="country-info" class="stack-info hidden"></p>
+
+    <section id="unlock-panel" class="panel hidden">
+      <div id="rotation-banner" class="rotation-banner hidden">
+        <strong>Passkey rotated</strong> — for security your passkey changes every 30 minutes. Copy the new passkey below and unlock again.
+      </div>
+      <p class="hint">Generate a passkey, then type or paste it below before you can search.</p>
+      <div id="first-time-warning-box" class="warning-box hidden">
+        <div class="warning-title">⚠️ WARNING</div>
+        <p>If you lose this passphrase, you will lose access to all your encrypted history permanently. There is NO recovery option!</p>
+        <label class="checkbox-row" style="color: var(--text); font-size: 11px; margin-top: 6px; text-transform: none; display: flex; align-items: center; gap: 8px;">
+          <input type="checkbox" id="confirm-passphrase-loss" />
+          I understand history will be lost permanently if I lose this passphrase.
+        </label>
+      </div>
+      <button type="button" id="generate-passkey-btn" class="btn ghost">Generate passkey</button>
+      <div id="passkey-suggested-box" class="passkey-box hidden">
+        <label>Suggested passkey (copy if you like)</label>
+        <code id="passkey-suggested"></code>
+        <button type="button" id="copy-suggested" class="btn ghost">Copy</button>
+      </div>
+      <label for="pass-input">Enter passkey to unlock</label>
+      <input id="pass-input" type="password" placeholder="Paste or type your passkey" autocomplete="off" spellcheck="false" />
+      <button type="button" id="unlock-btn" class="btn primary">Unlock vault</button>
+      <p id="unlock-status" class="status"></p>
+    </section>
+
+    <section id="search-panel" class="panel hidden">
+      <form id="search-form">
+        <input id="search-input" type="search" placeholder="Search privately…" autocomplete="off" spellcheck="false" />
+        <button type="submit" class="btn primary">Search</button>
+      </form>
+      <p id="status" class="status"></p>
+    </section>
+
+    <section id="visited-panel" class="panel hidden">
+      <div class="history-head">
+        <h2>Tabs visited (last 15 min)</h2>
+        <button type="button" id="clear-visited-btn" class="btn ghost">Clear</button>
+      </div>
+      <ul id="visited-list" class="history-list visited-list"></ul>
+    </section>
+
+    <section id="history-panel" class="panel hidden">
+      <div class="history-head">
+        <h2>Encrypted searches (last 5)</h2>
+        <button type="button" id="clear-btn" class="btn ghost">Clear</button>
+      </div>
+      <p class="hint history-hint">Shown only here — not in Chrome History. Cache wiped after 15 minutes.</p>
+      <ul id="history-list" class="history-list"></ul>
+    </section>
+
+    <nav class="top-links">
+      <a href="options.html" target="_blank">Settings</a>
+      <!--<a id="pitch-link" href="http://127.0.0.1:3847/demo" target="_blank">Pitch deck</a>-->
+    </nav>
+
+    <footer class="footer">
+      <span>Zero-knowledge · AES-256-GCM vault · passkey rotates every 30 min</span>
+    </footer>
+  </main>
+  <script type="module" src="newtab.js"></script>
+</body>
+</html>

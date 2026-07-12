@@ -1,0 +1,77 @@
+{
+  "manifest_version": 3,
+  "name": "NullTrace",
+  "version": "2.3.0",
+  "description": "Private vault — normal tabs, 15m cache wipe, country proxy, visited tabs on homepage only.",
+  "_host_permissions_justification": "NullTrace requires <all_urls> to (1) dynamically route browser-wide network traffic through user-configured custom proxy nodes, (2) run the content script privacy shield across all search queries, and (3) clean up cookies, cache, and history on tab close for any site visited from the private search tab.",
+  "permissions": [
+    "storage",
+    "history",
+    "webNavigation",
+    "tabs",
+    "browsingData",
+    "proxy",
+    "scripting",
+    "alarms",
+    "declarativeNetRequest",
+    "sessions",
+    "webRequest",
+    "webRequestAuthProvider"
+  ],
+  "host_permissions": [
+    "http://127.0.0.1:3847/*",
+    "http://localhost:3847/*",
+    "<all_urls>"
+  ],
+  "chrome_url_overrides": {
+    "newtab": "newtab.html"
+  },
+  "browser_url_overrides": {
+    "newtab": "newtab.html"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content/privacy-shield.js"],
+      "run_at": "document_start",
+      "all_frames": false
+    }
+  ],
+  "options_ui": {
+    "page": "options.html",
+    "open_in_tab": true
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "NullTrace",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "commands": {
+    "panic-wipe": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+Y",
+        "mac": "Command+Shift+Y"
+      },
+      "description": "Panic wipe: immediately clear history, session keys, and proxy state."
+    }
+  },
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "NullTrace@hackathon.local",
+      "strict_min_version": "109.0"
+    }
+  }
+}
